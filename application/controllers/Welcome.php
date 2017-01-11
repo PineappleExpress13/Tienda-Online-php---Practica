@@ -22,6 +22,7 @@ class Welcome extends CI_Controller {
 	{
             $this->load->model('Modelo_producto');
             $datos['productos']=$this->Modelo_producto->ListaProductos(0,15);
-            $this->load->view('welcome_message',$datos);
+            $this->load->view('Vista_principal',$datos);
 	}
+        
 }
