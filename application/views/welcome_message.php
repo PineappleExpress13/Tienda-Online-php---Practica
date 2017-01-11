@@ -68,11 +68,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>Probando maqui</h1>
+	<h1>asdouahsidu</h1>
 
 	<div id="body">
 		<?php 
-                print_r($productos);
+                print_r($gatos);
                 ?>
 	</div>
 

@@ -22,7 +22,11 @@ class Welcome extends CI_Controller {
 	{
             $this->load->model('Modelo_producto');
             $datos['productos']=$this->Modelo_producto->ListaProductos(0,15);
-            $this->load->view('Vista_principal',$datos);
-	}
+            $this->load->view('Vista_principal',array(
+                'perros'=>$this->Modelo_producto->SelectedPerro(),
+                'gatos'=>$this->Modelo_producto->SelectedGato()
+            ));
+	}   
+        
         
 }

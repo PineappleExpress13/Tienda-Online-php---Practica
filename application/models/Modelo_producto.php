@@ -22,6 +22,17 @@ class Modelo_producto extends CI_Model {
             $consulta=$this->db->get_where('tbl_producto',array('tbl_categoria_id'=>$categoria));
             return $consulta->result_array();
         }
+        public function SelectedPerro()
+        {
+         $consulta=$this->db->query('SELECT * FROM tbl_producto WHERE tbl_categoria_id in (1,2,3,4,5,6,7,8,9) AND selected = 1');
+         return $consulta->result_array();
+        }
+         public function SelectedGato()
+        {
+         $consulta=$this->db->query('SELECT * FROM tbl_producto WHERE tbl_categoria_id in (10,11,12,13,14,15,16,17,18) AND selected = 1');
+         return $consulta->result_array();
+        }
+        
         public function TotalProductos()
         {
             return $this->db->count_all('tbl_producto');
