@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
             $this->load->model('Modelo_producto');
+            $this->load->view('Vista_cabecera');
             $datos['productos']=$this->Modelo_producto->ListaProductos(0,15);
             $this->load->view('Vista_principal',array(
                 'perros'=>$this->Modelo_producto->SelectedPerro(),
