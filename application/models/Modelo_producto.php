@@ -8,7 +8,12 @@ class Modelo_producto extends CI_Model {
 		parent::__construct();
 		$this->load->database();
 	}
-        
+        public function getProducto($id)
+        {
+            $this->db->where('id',$id);
+            $consulta=$this->db->get('tbl_producto');
+            return $consulta->result_array();
+        }
         public function ListaProductos($inicio,$tam_pag)
         {
             $this->db->limit($inicio,$tam_pag);
@@ -19,7 +24,16 @@ class Modelo_producto extends CI_Model {
         public function ListaProductosByCat($categoria,$inicio,$tam_pag)
         {
             $this->db->limit($inicio,$tam_pag);
-            $consulta=$this->db->get_where('tbl_producto',array('tbl_categoria_id'=>$categoria));
+            if(is_array($categoria))
+            {
+                $string='(';
+                foreach($categoria as $id)
+                {
+                    $string.= $id.',';
+                }
+            }
+            else
+            $consulta=$this->db->query('SELECT * FROM tbl_producto WHERE tbl_categoria_id in '.$categoria.' AND selected = 1');
             return $consulta->result_array();
         }
         public function SelectedPerro()
