@@ -31,9 +31,12 @@ class Modelo_producto extends CI_Model {
                 {
                     $string.= $id.',';
                 }
+                $string=substr($string,0,-1);
+                $string.=')';
+                $consulta=$this->db->query('SELECT * FROM tbl_producto WHERE tbl_categoria_id in '.$string);
             }
             else
-            $consulta=$this->db->query('SELECT * FROM tbl_producto WHERE tbl_categoria_id in '.$categoria.' AND selected = 1');
+            $consulta=$this->db->query('SELECT * FROM tbl_producto WHERE tbl_categoria_id = '.$categoria);
             return $consulta->result_array();
         }
         public function SelectedPerro()
