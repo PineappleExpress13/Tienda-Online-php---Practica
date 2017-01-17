@@ -24,10 +24,11 @@ class Modelo_producto extends CI_Model {
         public function ListaProductosByCat($categoria,$inicio,$tam_pag)
         {
             $this->db->limit($inicio,$tam_pag);
-            if(is_array($categoria))
+            $aux=explode('-',$categoria);
+            if(count($aux)>1)
             {
                 $string='(';
-                foreach($categoria as $id)
+                foreach($aux as $id)
                 {
                     $string.= $id.',';
                 }

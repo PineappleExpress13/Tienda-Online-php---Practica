@@ -26,6 +26,7 @@ class Welcome extends CI_Controller {
                 'perros'=>$this->Modelo_producto->SelectedPerro(),
                 'gatos'=>$this->Modelo_producto->SelectedGato()
             ));
+            $this->load->view('Vista_pie');
 	}   
         
         

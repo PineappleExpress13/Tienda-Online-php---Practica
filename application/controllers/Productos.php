@@ -30,7 +30,8 @@ class Productos extends CI_Controller {
         public function Categoria($id)
         {
             $this->load->model('Modelo_producto');
-            $this->load->view('Welcome_message',array(
+            $this->load->view('Vista_cabecera');
+            $this->load->view('Vista_categoria',array(
                     'productos' => $this->Modelo_producto->ListaProductosByCat($id,0,8)));
             //$this->load->view('Vista_pie');
         }

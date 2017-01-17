@@ -173,52 +173,52 @@
             <!-- Left nav -->
             <ul class="nav navbar-nav">
               <li><?= anchor(base_url(),"Pagina principal"); ?></li>
-              <li><a href="#">Perros <span class="caret"></span></a>
+              <li><a href="<?=site_url('Productos/Categoria/1-2-3-4-5-6-7-8-9')?>">Perros <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
-                  <li><a href="#">Alimentación<span class="caret"></span></a>
+                  <li><a href="<?=site_url('Productos/Categoria/1-2-3')?>">Alimentación<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Pienso</a></li>
-                      <li><a href="#">Comida húmeda</a></li>
-                      <li><a href="#">Snacks</a></li>                                      
+                      <li><a href="<?=site_url('Productos/Categoria/1')?>">Pienso</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/2')?>">Comida húmeda</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/3')?>">Snacks</a></li>                                      
                     </ul>
                   </li>
-                  <li><a href="#">Higiene<span class="caret"></span></a>
+                  <li><a href="<?=site_url('Productos/Categoria/4-5-6')?>">Higiene<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Cepillos</a></li>
-                      <li><a href="#">Higiene para el hogar</a></li>
-                      <li><a href="#">Belleza y cuidado</a></li>                                      
+                      <li><a href="<?=site_url('Productos/Categoria/4')?>">Cepillos</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/5')?>">Higiene para el hogar</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/6')?>">Belleza y cuidado</a></li>                                      
                     </ul>
                   </li>
-                  <li><a href="#">Accesorios<span class="caret"></span></a>
+                  <li><a href="<?=site_url('Productos/Categoria/7-8-9')?>">Accesorios<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Juguetes</a></li>
-                      <li><a href="#">Transportines</a></li>
-                      <li><a href="#">Correas</a></li>                                      
+                      <li><a href="<?=site_url('Productos/Categoria/7')?>">Juguetes</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/8')?>">Transportines</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/9')?>">Correas</a></li>                                      
                     </ul>
                   </li>
                 </ul>
               </li>
-              <li><a href="#">Gatos<span class="caret"></span></a>
+              <li><a href="<?=site_url('Productos/Categoria/10-11-12-13-14-15-16-17-18')?>">Gatos<span class="caret"></span></a>
                <ul class="dropdown-menu">                
-                  <li><a href="#">Alimentación<span class="caret"></span></a>
+                  <li><a href="<?=site_url('Productos/Categoria/10-11-12')?>">Alimentación<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Pienso</a></li>
-                      <li><a href="#">Comida húmeda</a></li>
-                      <li><a href="#">Snacks</a></li>                                      
+                      <li><a href="<?=site_url('Productos/Categoria/10')?>">Pienso</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/11')?>">Comida húmeda</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/12')?>">Snacks</a></li>                                      
                     </ul>
                   </li>
-                  <li><a href="#">Higiene<span class="caret"></span></a>
+                  <li><a href="<?=site_url('Productos/Categoria/13-14-15')?>">Higiene<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Cepillos</a></li>
-                      <li><a href="#">Higiene</a></li>
-                      <li><a href="#">Arena</a></li>                                      
+                      <li><a href="<?=site_url('Productos/Categoria/13')?>">Cepillos</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/14')?>">Higiene</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/15')?>">Arena</a></li>                                      
                     </ul>
                   </li>
-                  <li><a href="#">Accesorios<span class="caret"></span></a>
+                  <li><a href="<?=site_url('Productos/Categoria/16-17-18')?>">Accesorios<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Juguetes</a></li>
-                      <li><a href="#">Transportines</a></li>
-                      <li><a href="#">Rascadores</a></li>                                      
+                      <li><a href="<?=site_url('Productos/Categoria/16')?>">Juguetes</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/17')?>">Transportines</a></li>
+                      <li><a href="<?=site_url('Productos/Categoria/18')?>">Rascadores</a></li>                                      
                     </ul>
                   </li>
                 </ul>             

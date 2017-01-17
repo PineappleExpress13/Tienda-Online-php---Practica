@@ -54,34 +54,18 @@
             <div class="row">
               <div class="col-md-3 col-sm-6">
                 <div class="aa-footer-widget">
-                  <h3>Main Menu</h3>
+                  <h3>Menu principal</h3>
                   <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Our Services</a></li>
-                    <li><a href="#">Our Products</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="<?=base_url()?>">Home</a></li>
+                    <li><a href="<?=base_url().'Productos/Categoria/1-2-3-4-5-6-7-8-9'?>">Categoria: Perros</a></li>
+                    <li><a href="<?=base_url().'Productos/Categoria/10-11-12-13-14-15-16-17-18'?>">Categoria: Gatos</a></li>
                   </ul>
                 </div>
               </div>
               <div class="col-md-3 col-sm-6">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
-                    <h3>Knowledge Base</h3>
-                    <ul class="aa-footer-nav">
-                      <li><a href="#">Delivery</a></li>
-                      <li><a href="#">Returns</a></li>
-                      <li><a href="#">Services</a></li>
-                      <li><a href="#">Discount</a></li>
-                      <li><a href="#">Special Offer</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Useful Links</h3>
+                    <h3>Envios totalmente gratuitos</h3>
                     <ul class="aa-footer-nav">
                       <li><a href="#">Site Map</a></li>
                       <li><a href="#">Search</a></li>
@@ -95,7 +79,7 @@
               <div class="col-md-3 col-sm-6">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
-                    <h3>Contact Us</h3>
+                    <h3>Contacto</h3>
                     <address>
                       <p> 25 Astor Pl, NY 10003, USA</p>
                       <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
