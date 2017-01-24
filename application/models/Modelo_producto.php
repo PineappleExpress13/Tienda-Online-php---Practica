@@ -63,16 +63,16 @@ class Modelo_producto extends CI_Model {
             $aux=explode('-',$categoria);
             if(count($aux)>1)
             {
-                $categoria='(';
+                
                 foreach($aux as $id)
                 {
                     $categoria.= $id.',';
                 }
                 $categoria=substr($categoria,0,-1);
-                $categoria.=')';
+                
             }
             $consulta = $this->db->query('SELECT count(*) as cuenta FROM '
-                    . 'tbl_producto where tbl_categoria_id in '.$categoria);
+                    . 'tbl_producto where tbl_categoria_id in ('.$categoria.')');
             return $consulta->row('cuenta');
         }
         public function InsertarProducto($datos)

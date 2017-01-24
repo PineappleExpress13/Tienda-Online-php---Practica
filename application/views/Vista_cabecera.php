@@ -75,7 +75,12 @@
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
                   <li class="hidden-xs"><a href="cart.html">Mi carrito</a></li>
+                  <?php if(!$this->session->userdata('login')):?>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                  <?php else:?>
+                  <li><a href="" >Mi cuenta</a></li>
+                  <li><a href="<?=site_url('/Login/Logout')?>">Logout</a></li>
+                  <?php endif;?>
                 </ul>
               </div>
             </div>

@@ -126,17 +126,16 @@
       <div class="modal-content">
         <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4>Login or Register</h4>
-          <form class="aa-login-form" action="">
-            <label for="">Username or Email address<span>*</span></label>
-            <input type="text" placeholder="Username or email">
-            <label for="">Password<span>*</span></label>
-            <input type="password" placeholder="Password">
+          <h4>Loguee o Registrese</h4>
+          <form type='text' class="aa-login-form" action="<?=site_url('/Login/Log')?>" method="POST">
+            <label for="">Usuario<span>*</span></label>
+            <input type="text" placeholder="Usuario" name="usuario">
+            <label for="">Contraseña<span>*</span></label>
+            <input type="password" placeholder="Contraseña" name="password">
             <button class="aa-browse-btn" type="submit">Login</button>
-            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
-            <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+            <p class="aa-lost-password"><a href="#">Olvidaste tu contraseña?</a></p>
             <div class="aa-register-now">
-              Don't have an account?<a href="account.html">Register now!</a>
+              No tienes cuenta?<a href="<?=site_url('/Login/Registro')?>">Registrate ahora!!</a>
             </div>
           </form>
         </div>

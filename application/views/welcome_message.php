@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 		<?php 
-                print_r($productos);
+                echo '<h3>'.$usuario.'</h3>'
                 ?>
 	</div>
 
