@@ -43,7 +43,7 @@
                                         <div class="form-group">
 						<label for="usuario"><strong>Provincia</strong></label>
 						<!--//todo-->
-						<?php echo form_error('usuario'); ?>
+						<?php echo form_error('provincia'); ?>
 					</div>
 
 					<div class="form-group">
