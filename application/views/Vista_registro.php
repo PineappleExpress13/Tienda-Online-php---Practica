@@ -42,7 +42,7 @@
 					</div>
                                         <div class="form-group">
 						<label for="usuario"><strong>Provincia</strong></label>
-						<!--//todo-->
+                                                <?= form_dropdown('provincia',$provincias, '-1','class="form-control"') ?>
 						<?php echo form_error('provincia'); ?>
 					</div>
 

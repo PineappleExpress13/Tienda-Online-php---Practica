@@ -46,6 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/user_guide/libraries/form_validation.html
  */
+
+
 class CI_Form_validation {
 
 	/**
@@ -1181,7 +1183,34 @@ class CI_Form_validation {
 	}
 
 	// --------------------------------------------------------------------
+                /**
+         * Valid DNI
+         *
+         * @access public
+         * @param  string
+         * @return bool
+         */
+        public function valid_dni($str)
+        {
+            $str = trim($str);
+            $str = str_replace("-","",$str);
+            $str = str_ireplace(" ","",$str);
 
+            if ( !preg_match("/^[0-9]{7,8}[a-zA-Z]{1}$/" , $str) )
+            {
+                return FALSE;
+            }
+            else
+            {
+                $n = substr($str, 0 , -1);
+                $letter = substr($str,-1);
+                $letter2 = substr ("TRWAGMYFPDXBNJZSQVHLCKE", $n%23, 1);
+                if(strtolower($letter) != strtolower($letter2))
+                    return FALSE;
+            }
+            return TRUE;
+        }
+        // --------------------------------------------------------------------
 	/**
 	 * Valid URL
 	 *

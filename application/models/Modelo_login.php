@@ -13,7 +13,7 @@ class Modelo_login extends CI_Model {
         {
             $query=$this->db->get_where('tbl_usuario',array(
                 'correo'=> $user,
-                'password'=> $password));
+                'password'=> sha1($password)));
             
             if($fila = $query->row_array())
             {
@@ -21,11 +21,12 @@ class Modelo_login extends CI_Model {
                   'login' => TRUE,
                 );
                 $this->session->set_userdata($data);
+                redirect(base_url());
                 return TRUE;
             }
             else
+                redirect(base_url());
             return false;
-            redirect(base_url());
         }
         
         public function Logout ()
@@ -38,6 +39,30 @@ class Modelo_login extends CI_Model {
         {
             $this->db->insert('tbl_usuario', $datos);
             redirect(base_url());
+            
+        }
+         public function ListaProvincias()
+        {
+           $consulta =  $this->db->get('tbl_provincias');
+           $consulta= $consulta->result_array();
+           $datos=array('-1'=>'');
+           foreach($consulta as $dato)
+           {
+               array_push($datos,$dato['nombre']);
+           }
+           return $datos;
+        }
+        
+        public function ModificarUsuario($id,$datos)
+        {
+            $this->db->where('id',$id);
+            $this->db->update('tbl_usuario',$datos);
+        }
+        
+        public function Baja($id)
+        {
+            $this->db->where('id',$id);
+            $this->db->update('tbl_usuario',array('alive'=>'N'));
         }
         
         
