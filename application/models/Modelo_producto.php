@@ -88,4 +88,18 @@ class Modelo_producto extends CI_Model {
             $this->db->where('id',$id);
             $this->db->update('tbl_producto',$datos);
         }
+        
+        public function PrecioProducto($id)
+        {
+            $this->db->where('id',$id);
+            $consulta=$this->db->get('tbl_producto');
+            foreach($consulta->result_array() as $dato)
+            {
+                $precio= $dato['precio_venta'];
+                $descuento= $dato['descuento'];
+            }
+            
+            $precio_final=$precio-(($precio*$descuento)/100);
+            return $precio_final;
+        }
 }
