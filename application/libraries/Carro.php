@@ -205,5 +205,20 @@ class Carro
 	{
 		self::__construct();
 	}
- 
+        
+        public function UnoMas($id)
+        {
+            $_SESSION['carrito'][$id]['cantidad']++;
+            $_SESSION['carrito'][$id]['total']=$_SESSION['carrito'][$id]['precio']*$_SESSION['carrito'][$id]['cantidad'];
+            $this->update_carrito();
+            $this->update_precio_cantidad();
+        }
+        
+        public function UnoMenos($id)
+        {
+           $_SESSION['carrito'][$id]['cantidad']--;
+            $_SESSION['carrito'][$id]['total']=$_SESSION['carrito'][$id]['precio']*$_SESSION['carrito'][$id]['cantidad'];
+            $this->update_carrito();
+            $this->update_precio_cantidad(); 
+        }
 }

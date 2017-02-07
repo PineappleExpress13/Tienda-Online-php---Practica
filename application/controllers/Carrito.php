@@ -43,6 +43,17 @@ public function __construct()
             $this->load->view('Vista_pie');
         }
 
+        public function UnoMas($id)
+        {
+            $this->carro->UnoMas($id);
+            redirect(site_url('/Carrito/Index'));
+        }
+        
+        public function UnoMenos($id)
+        {
+            $this->carro->UnoMenos($id);
+            redirect(site_url('/Carrito/Index'));
+        }
         
         
 

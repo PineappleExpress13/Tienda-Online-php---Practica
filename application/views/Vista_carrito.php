@@ -38,9 +38,15 @@
                          <tr>
                             <td><a href='<?=site_url('/Carrito/Borrar/'.$campo['unique_id'])?>'><span class="fa fa-times" aria-hidden="true"></span></a></td>
                             <td><img src="<?=base_url().$campo['imagen']?>"></td>
-                            <td><a class="aa-cart-title" href="<?=site_url('/Productos/Producto/'.$campo['id'])?>"><?=$campo['nombre']?></a></td>
+                            <td><a class="aa-cart-title" href="<?=
+                            site_url('/Productos/Producto/'.$campo['id'])?>"><?=$campo['nombre']?></a></td>
                             <td><?=$campo['precio']?>€</td>
-                            <td><?=$campo['cantidad']?></td>
+                            <td>
+                                    <?=$campo['cantidad']?>
+                                <a href="<?=site_url('/Carrito/UnoMas/'.md5($campo['id']))?>"><span class='fa fa-plus-square'></span></a>
+                                <a href="<?=site_url('/Carrito/UnoMenos/'.md5($campo['id']))?>"><span class='fa fa-minus-square'></span></a>
+                            
+                            </td>
                             <td><?=$campo['total']?>€</td>
                       </tr>
                             
