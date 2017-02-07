@@ -56,7 +56,7 @@
                 <li>
                   <figure>
                     <img src="<?=base_url().$producto['imagen']?>">
-                    <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
+                    <a class="aa-add-card-btn" href="<?= site_url('/Carrito/Add/'.$producto["id"].'/1')?>"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
                     <figcaption>
                       <h4 class="aa-product-title"><a href="<?=base_url().'Productos/Producto/'.$producto['id']?>"><?=$producto['nombre']?></a></h4>
                       <span class="aa-product-price"><?=$producto['precio_venta']?> €</span>

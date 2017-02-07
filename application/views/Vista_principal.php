@@ -139,7 +139,7 @@
                         <li>
                             <figure>
                                 <img src="<?=base_url().$gato['imagen']?>">
-                                <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
+                                <a class="aa-add-card-btn"href="<?= site_url('/Carrito/Add/'.$gato["id"].'/1')?>"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
                                 <figcaption>
                                     <h4 class="aa-product-title"><a href="<?=site_url('Productos/Producto/'.$gato['id'])?>"><?=$gato['nombre']?></a></h4>
                                     <span class="aa-product-price"><?=$gato['precio_venta']?>€</span>
@@ -167,7 +167,7 @@
                         <li>
                             <figure>
                                 <img src="<?=base_url().$perro['imagen']?>">
-                                <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
+                                <a class="aa-add-card-btn"href="<?= site_url('/Carrito/Add/'.$perro["id"].'/1')?>"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
                                 <figcaption>
                                     <h4 class="aa-product-title"><a href="<?=site_url('Productos/Producto/'.$perro['id'])?>"><?=$perro['nombre']?></a></h4>
                                     <span class="aa-product-price"><?=$perro['precio_venta']?>€</span>

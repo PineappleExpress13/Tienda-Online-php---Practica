@@ -74,7 +74,7 @@
               <!-- / header top left -->
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
-                  <li class="hidden-xs"><a href="cart.html">Mi carrito</a></li>
+                  <li class="hidden-xs"><a href="<?=site_url('Carrito/Index')?>">Mi carrito</a></li>
                   <?php if(!$this->session->userdata('login')):?>
                   <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
                   <?php else:?>
@@ -108,44 +108,46 @@
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">Carrito</span>
-                  <span class="aa-cart-notify">0</span>
+                  <span class="aa-cart-notify"><?=$this->carro->articulos_total();?></span>
                 </a>
                   
                   
                   <!--PHP AQuí-->
                 <div class="aa-cartbox-summary">
                   <ul>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-2.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>
-                    <li>
-                      <a class="aa-cartbox-img" href="#"><img src="img/woman-small-1.jpg" alt="img"></a>
-                      <div class="aa-cartbox-info">
-                        <h4><a href="#">Product Name</a></h4>
-                        <p>1 x $250</p>
-                      </div>
-                      <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                    </li>                    
+                      <?php if($this->carro->get_content()!=null) : ?>
+                        <?php foreach($this->carro->get_content() as $campo) :
+                        
+                            if(is_array($campo)) : ?>
+                            <li>
+                           <a class="aa-cartbox-img" href="<?=site_url('/Productos/Producto/'.$campo['id'])?>"><img src="<?=base_url().$campo['imagen']?>"></a>
+                            <div class="aa-cartbox-info">
+                            <h4><a class="aa-cart-title" href="<?=site_url('/Productos/Producto/'.$campo['id'])?>"><?=$campo['nombre']?></a></h4>
+                            <p><?=$campo['cantidad']?> x <?=$campo['precio']?>€</p>
+                            </div>
+                            <a class ="aa-remove-product" href='<?=site_url('/Carrito/Borrar/'.$campo['unique_id'])?>'><span class="fa fa-times" aria-hidden="true"></span></a>
+                            </li>
+                            
+                       <?php
+                       endif; 
+                       endforeach;
+                       endif;?>                  
                     <li>
                       <span class="aa-cartbox-total-title">
                         Total
                       </span>
                       <span class="aa-cartbox-total-price">
-                        $500
+                        <?=$this->carro->precio_total()?>€
                       </span>
                     </li>
                   </ul>
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
+                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Pagar</a>
+                  <a  class="aa-cartbox-checkout aa-primary-btn" href="<?=site_url('/Carrito/Vaciar')?>" class="aa-cart-view-btn">Vaciar</a>
                 </div>
               </div>
               <!-- / cart box -->
               <!-- search box -->
-              <div class="aa-search-box">
+              <!--<div class="aa-search-box">
                 <form action="">
                   <input type="text" name="" id="" placeholder="Buscar aquí ej: 'Gatos' ">
                   <button type="submit"><span class="fa fa-search"></span></button>

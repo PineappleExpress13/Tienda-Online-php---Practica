@@ -14,21 +14,35 @@ public function __construct()
           $articulo=array(
             'id'         => $id,
             'cantidad'   => $cantidad,
+            'nombre'     => $this->Modelo_producto->NombreProducto($id),
+            'imagen'     => $this->Modelo_producto->ImagenProducto($id),
             'precio'     => $this->Modelo_producto->PrecioProducto($id)
           );
           
           $this->carro->Add($articulo);
+          redirect(site_url('/Carrito/Index'));
         }
         
-        public function Borrar()
+        public function Borrar($id)
         {
-            
+            $this->carro->remove_producto($id);
+            redirect(site_url('/Carrito/Index'));
         }
         
         public function Vaciar()
         {
+            $this->carro->destroy();
+            redirect(site_url('/Carrito/Index'));
             
         }
+        
+        public function Index()
+        {
+            $this->load->view('Vista_cabecera');
+            $this->load->view('Vista_carrito');
+            $this->load->view('Vista_pie');
+        }
+
         
         
 

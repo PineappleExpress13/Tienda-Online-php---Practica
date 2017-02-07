@@ -87,7 +87,7 @@
                       </p>
                     </div>
                     <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="#">Añadir al carrito</a>
+                      <a class="aa-add-to-cart-btn" href="<?= site_url('/Carrito/Add/'.$producto[0]["id"].'/1')?>">Añadir al carrito</a>
                     </div>
                   </div>
                 </div>
