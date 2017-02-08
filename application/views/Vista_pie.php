@@ -133,7 +133,7 @@
             <label for="">Contraseña<span>*</span></label>
             <input type="password" placeholder="Contraseña" name="password">
             <button class="aa-browse-btn" type="submit">Login</button>
-            <p class="aa-lost-password"><a href="#">Olvidaste tu contraseña?</a></p>
+            <p class="aa-lost-password"><a href="<?= site_url('/Login/Recuperar')?>">Olvidaste tu contraseña?</a></p>
             <div class="aa-register-now">
               No tienes cuenta?<a href="<?=site_url('/Login/Registro')?>">Registrate ahora!!</a>
             </div>

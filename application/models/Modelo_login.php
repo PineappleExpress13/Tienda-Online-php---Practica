@@ -19,9 +19,9 @@ class Modelo_login extends CI_Model {
             {
                 $data = array(
                   'login' => TRUE,
+                  'id' => $fila['id']
                 );
                 $this->session->set_userdata($data);
-                redirect(base_url());
                 return TRUE;
             }
             else
@@ -65,5 +65,15 @@ class Modelo_login extends CI_Model {
             $this->db->update('tbl_usuario',array('alive'=>'N'));
         }
         
-        
+        public function Verificar($mail)
+        {
+           $this->db->where('correo',$mail);
+           $query=$this->db->get('tbl_usuario');
+           if($fila = $query->row_array())
+           {
+               return $fila['id'];
+           }
+           else
+               return false;
         }
+}

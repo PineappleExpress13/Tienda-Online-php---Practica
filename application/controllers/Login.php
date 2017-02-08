@@ -32,6 +32,55 @@ class Login extends CI_Controller {
             $this->load->view('Vista_pie');
         }
         
+        public function Recuperar()
+        {
+            if(empty($_POST))
+            {
+                $this->load->view('vista_cabecera');
+                $this->load->view('Vista_recuperar');
+                $this->load->view('Vista_pie');
+            }
+            else if(!$this->Modelo_login->Verificar($this->input->post('mail')))
+            {
+                $this->load->view('vista_cabecera');
+                $this->load->view('Vista_recuperar',array(
+                    'fallo' => TRUE
+                ));
+                $this->load->view('Vista_pie');
+            }
+            else if($this->Modelo_login->Verificar($this->input->post('mail')))
+            {
+                $this->load->library('email');
+                
+                $config['mailpath'] = '/usr/sbin/sendmail';
+                $config['charset'] = 'utf-8';
+                $config['wordwrap'] = TRUE;
+                $config['protocol'] = 'smtp';
+                $config['smtp_host'] = 'mail.iessansebastian.com';
+                $config['smtp_user'] = 'aula4@iessansebastian.com';
+                $config['mailtype'] = 'html';
+                $config['smtp_pass'] = 'daw2alumno';
+                
+                $this->email->initialize($config);
+                
+                $this->email->clear();
+                $this->email->from('aula4@iessansebastian.com');
+                $this->email->to('josuepinarodriguez@gmail.com');
+                $this->email->subject('Probando');
+                $this->email->message('Testing the email class.');
+
+                if($this->email->send())
+                {
+                    echo ' se ha enviado';
+                }
+                else
+                {
+                    echo "error";
+                }
+                $this->email->print_debugger(array('headers','body','subject'));
+            }
+        }
+        
         public function Registrar()
         {
            $this->NormasRegistro();
@@ -60,7 +109,7 @@ class Login extends CI_Controller {
               $this->Modelo_login->Registrar($datos);
             }
         }
-        
+
         public function NormasRegistro()
         {
             //Usuario
@@ -95,9 +144,8 @@ class Login extends CI_Controller {
              $this->form_validation->set_rules('conf_pass','pass','required|matches[pass]',
                     array('required'=>'Debe introducir el campo',
                         'matches' => 'Deben coincidir las contraseñas'));
-             
-             
-             
         }
+        
+        
         
 }

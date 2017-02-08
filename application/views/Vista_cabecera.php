@@ -112,7 +112,7 @@
                 </a>
                   
                   
-                  <!--PHP AQuí-->
+                  
                 <div class="aa-cartbox-summary">
                   <ul>
                       <?php if($this->carro->get_content()!=null) : ?>
