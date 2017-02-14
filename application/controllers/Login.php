@@ -16,6 +16,7 @@ class Login extends CI_Controller {
           $email = $this->input->post('usuario');
           $password = $this->input->post('password');
           $this->Modelo_login->Login($email,$password);
+          redirect(site_url());
           
         }
         

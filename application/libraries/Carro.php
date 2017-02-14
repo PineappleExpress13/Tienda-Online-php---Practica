@@ -221,4 +221,5 @@ class Carro
             $this->update_carrito();
             $this->update_precio_cantidad(); 
         }
+        
 }

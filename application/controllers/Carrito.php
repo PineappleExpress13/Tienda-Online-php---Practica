@@ -55,6 +55,31 @@ public function __construct()
             redirect(site_url('/Carrito/Index'));
         }
         
+        public function Pedido()
+        {
+            $this->load->model('Modelo_pedido');
+            if(isset($_SESSION['login']))
+            {
+                if(!isset($_SESSION['pedido']) || $_SESSION['pedido']!=true)
+                {
+                    $this->Modelo_pedido->GeneraPedido($_SESSION['id']);
+                }
+                else
+                {
+                    
+                }
+                $this->Modelo_pedido->AddLineas();
+            }
+            else
+            {
+               redirect(site_url('/Login/Registro')); 
+            }
+        }
+        
+        public function ConfirmarPedido()
+        {
+            $this->session->unset_userdata('pedido');
+        }
         
 
 }

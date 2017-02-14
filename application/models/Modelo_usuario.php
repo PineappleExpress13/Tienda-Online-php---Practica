@@ -32,4 +32,19 @@ class Modelo_usuario extends CI_Model {
             
         }
         
+        public function getUser($id)
+        {
+            $this->db->where('id',$id);
+            $consulta=$this->db->get('tbl_usuario');
+            foreach($consulta->result_array() as $dato)
+            {
+                   $usuario =  array(
+                    'nombre' => $dato['nombre'],
+                    'direccion' => $dato['direccion'],
+                    'dni' => $dato['dni']
+                );
+            }
+            return $usuario;
+        
+        }
 }
