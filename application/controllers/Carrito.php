@@ -81,6 +81,11 @@ public function __construct()
             $this->session->unset_userdata('pedido');
         }
         
+        public function PDF()
+        {
+           $this->load->model('Modelo_pedido');
+           $this->Modelo_pedido->GenerarPDF();
+        }
 
 }
 

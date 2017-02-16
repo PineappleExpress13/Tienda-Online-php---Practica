@@ -359,12 +359,24 @@ function AddPage($orientation='', $size='', $rotation=0)
 
 function Header()
 {
-	// To be implemented in your own inherited class
+	    // Arial bold 15
+            $this->SetFont('Arial','B',16);
+            // Movernos a la derecha
+            $this->Cell(80);
+            // Título
+            $this->Cell(30,10,'Wokiki pedido',1,0,'C');
+            // Salto de línea
+            $this->Ln(20);
 }
 
 function Footer()
 {
-	// To be implemented in your own inherited class
+	 // Posición: a 1,5 cm del final
+            $this->SetY(-15);
+            // Arial italic 8
+            $this->SetFont('Arial','I',8);
+            // Número de página
+            $this->Cell(0,10,'Pagina '.$this->PageNo().'/{nb}',0,0,'C');
 }
 
 function PageNo()
