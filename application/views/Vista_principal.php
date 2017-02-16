@@ -139,7 +139,9 @@
                         <li>
                             <figure>
                                 <img src="<?=base_url().$gato['imagen']?>">
+                                 <?php if($gato['stock']!=0) : ?>
                                 <a class="aa-add-card-btn"href="<?= site_url('/Carrito/Add/'.$gato["id"].'/1')?>"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
+                                <?php endif;?>
                                 <figcaption>
                                     <h4 class="aa-product-title"><a href="<?=site_url('Productos/Producto/'.$gato['id'])?>"><?=$gato['nombre']?></a></h4>
                                     <span class="aa-product-price"><?=$gato['precio_venta']?>€</span>
@@ -167,7 +169,9 @@
                         <li>
                             <figure>
                                 <img src="<?=base_url().$perro['imagen']?>">
+                                 <?php if($perro['stock']!=0) : ?>
                                 <a class="aa-add-card-btn"href="<?= site_url('/Carrito/Add/'.$perro["id"].'/1')?>"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
+                                <?php endif;?>
                                 <figcaption>
                                     <h4 class="aa-product-title"><a href="<?=site_url('Productos/Producto/'.$perro['id'])?>"><?=$perro['nombre']?></a></h4>
                                     <span class="aa-product-price"><?=$perro['precio_venta']?>€</span>

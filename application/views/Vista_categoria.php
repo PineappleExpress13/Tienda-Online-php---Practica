@@ -56,15 +56,21 @@
                 <li>
                   <figure>
                     <img src="<?=base_url().$producto['imagen']?>">
+                     <?php if($producto['stock']!=0) : ?>
                     <a class="aa-add-card-btn" href="<?= site_url('/Carrito/Add/'.$producto["id"].'/1')?>"><span class="fa fa-shopping-cart"></span>Añadir al carro</a>
+                    <?php endif;?>
                     <figcaption>
-                      <h4 class="aa-product-title"><a href="<?=base_url().'Productos/Producto/'.$producto['id']?>"><?=$producto['nombre']?></a></h4>
+                      <h4 class="aa-product-title"><a href="<?=site_url().'/Productos/Producto/'.$producto['id']?>"><?=$producto['nombre']?></a></h4>
                       <span class="aa-product-price"><?=$producto['precio_venta']?> €</span>
                       <p class="aa-product-descrip"><?=$producto['descripcion']?></p>
                     </figcaption>
                   </figure>                         
                   <!-- product badge -->
-                  <span class="aa-badge aa-sale" href="#">SALE!</span>
+                  <?php if($producto['stock']>0):?>
+                             <span class="aa-badge aa-sale" href="#">DISPONIBLE!</span>
+                            <?php else:?>
+                             <span class="aa-badge aa-sold-out" href="#">AGOTADO!</span>
+                            <?php endif;?>
                 </li>  
                 <?php endforeach;?>
               </ul> 

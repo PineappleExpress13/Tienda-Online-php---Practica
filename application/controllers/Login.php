@@ -41,7 +41,7 @@ class Login extends CI_Controller {
                 $this->load->view('Vista_recuperar');
                 $this->load->view('Vista_pie');
             }
-            else if(!$this->Modelo_login->Verificar($this->input->post('mail')))
+           else if(!$this->Modelo_login->Verificar($this->input->post('mail')))
             {
                 $this->load->view('vista_cabecera');
                 $this->load->view('Vista_recuperar',array(
@@ -51,37 +51,41 @@ class Login extends CI_Controller {
             }
             else if($this->Modelo_login->Verificar($this->input->post('mail')))
             {
-                $this->load->library('email');
-                
-                $config['mailpath'] = '/usr/sbin/sendmail';
-                $config['charset'] = 'utf-8';
-                $config['wordwrap'] = TRUE;
-                $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'mail.iessansebastian.com';
-                $config['smtp_user'] = 'aula4@iessansebastian.com';
-                $config['mailtype'] = 'html';
-                $config['smtp_pass'] = 'daw2alumno';
-                
-                $this->email->initialize($config);
-                
-                $this->email->clear();
-                $this->email->from('aula4@iessansebastian.com');
-                $this->email->to('josuepinarodriguez@gmail.com');
-                $this->email->subject('Probando');
-                $this->email->message('Testing the email class.');
-
-                if($this->email->send())
-                {
-                    echo ' se ha enviado';
-                }
-                else
-                {
-                    echo "error";
-                }
-                $this->email->print_debugger(array('headers','body','subject'));
+                 
+               $this->load->model('Modelo_usuario');
+               $this->Modelo_usuario->RecuperCuenta($this->input->post('mail'));
+               $this->load->view('vista_cabecera');
+                $this->load->view('Vista_recuperar',array(
+                    'envio' => TRUE));
+                $this->load->view('Vista_pie');
             }
         }
         
+        public function RecuperarCuenta($id)
+        {
+            if(empty($_POST))
+            {
+                $this->load->view('vista_cabecera');
+                $this->load->view('recuperar_pass');
+                $this->load->view('vista_pie');
+            }
+            else if(!empty($this->input->post('password')))
+            {
+                $this->load->model('Modelo_usuario');
+                $this->Modelo_usuario->CambiarPass($id,$this->input->post('password'));
+                $this->load->view('vista_cabecera');
+                $this->load->view('recuperar_pass',array(
+                    'cambio' => TRUE));
+                $this->load->view('vista_pie');
+            }
+            else
+            {
+                $this->load->view('vista_cabecera');
+                $this->load->view('recuperar_pass',array(
+                    'error' => TRUE));
+                $this->load->view('vista_pie');
+            }
+        }
         public function Registrar()
         {
            $this->NormasRegistro();

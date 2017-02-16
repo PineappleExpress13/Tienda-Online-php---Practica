@@ -9,6 +9,9 @@
                                     <?php if(isset($fallo)) : ?>
                                     <p> El mail introducido no existe </p>
                                     <?php endif;?>
+                                    <?php if(isset($envio)) : ?>
+                                    <div class="alert alert-success" role="alert">Se ha recuperado la contraseña con éxito</div>
+                                    <?php endif;?>
 						<label for="email"><strong>Email</strong></label>
 						<input type="text" name="mail" class="form-control" value="<?php echo set_value('mail'); ?>">
 						<?php echo form_error('mail'); ?>

@@ -72,23 +72,17 @@
  
                     
                     <div class="aa-prod-quantity">
-                      <form action="">
-                        <select id="" name="">
-                          <option selected="1" value="0">1</option>
-                          <option value="1">2</option>
-                          <option value="2">3</option>
-                          <option value="3">4</option>
-                          <option value="4">5</option>
-                          <option value="5">6</option>
-                        </select>
-                      </form>
-                      <p class="aa-prod-category">
-                        Category: <a href="#"></a>
-                      </p>
-                    </div>
+                      <form action="<?=site_url('/Carrito/Add/'.$producto[0]['id'])?>" method="POST">
+                          cantidad: <input type="number" id="cantidad" name="cantidad" min="1" max="5" value='1' maxlength="2">
+                      
+                    <?php if($producto[0]['stock']!=0) : ?>  
                     <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="<?= site_url('/Carrito/Add/'.$producto[0]["id"].'/1')?>">Añadir al carrito</a>
+                        <button type="submit" class="aa-add-to-cart-btn">Añadir al carrito</a>
+                        
                     </div>
+                    <?php endif;?>
+                    </form>
+                        </div>
                   </div>
                 </div>
               </div>
