@@ -235,8 +235,13 @@
         </div>
       </div>       
     </div>
-  </section>
-   <!-- jQuery library -->
+  </section> 
+  <div align="center">
+  <p>Estas seguro de que te quieres dar de baja?</p>
+  <a class="btn btn-default" href="<?=site_url('/Login/Bajadef')?>">Dar de baja</a>
+  <a class="btn btn-default" href="<?=site_url('/Login/Micuenta')?>">Volver</a>
+  </div>
+<!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="<?=base_url('Assets/js/bootstrap.js')?>"></script>  

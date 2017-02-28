@@ -236,7 +236,169 @@
       </div>       
     </div>
   </section>
-   <!-- jQuery library -->
+    	<div class="container">
+		<div class="col-md-6 offset-md-3">
+			<div class="card card-block">
+				<h3 class="card-title  text-md-center">Modificar usuario</h3>
+				<hr class="hr_black">
+				<form method="post" action="<?=site_url('/Login/Modificardatos')?>">
+                                        <div class="form-group">
+						<label for="email"><strong>Email</strong></label>
+						<input type="text" name="mail" class="form-control" value="<?php echo $usuario['correo'] ?>">
+						<?php echo form_error('mail'); ?>
+					</div>
+                                        <div class="form-group">
+						<label for="usuario"><strong>Nombre</strong></label>
+						<input type="text" name="nombre" class="form-control" value="<?php echo $usuario['nombre'] ?>">
+						<?php echo form_error('nombre'); ?>
+					</div>
+                                        <div class="form-group">
+						<label for="usuario"><strong>Apellidos</strong></label>
+						<input type="text" name="apellidos" class="form-control" value="<?php echo $usuario['apellidos']; ?>">
+						<?php echo form_error('apellidos'); ?>
+					</div>
+                                        <div class="form-group">
+						<label for="usuario"><strong>dni</strong></label>
+						<input type="text" name="dni" class="form-control" value="<?php echo $usuario['dni']; ?>">
+						<?php echo form_error('dni'); ?>
+					</div>
+                                        <div class="form-group">
+						<label for="usuario"><strong>direccion</strong></label>
+						<input type="text" name="direccion" class="form-control" value="<?php echo $usuario['direccion']; ?>">
+						<?php echo form_error('direccion'); ?>
+					</div>
+                                        <div class="form-group">
+						<label for="usuario"><strong>Codigo postal</strong></label>
+						<input type="text" name="cp" class="form-control" value="<?php echo $usuario['cp']; ?>">
+						<?php echo form_error('cp'); ?>
+					</div>
+                                        <div class="form-group">
+						<label for="usuario"><strong>Provincia</strong></label>
+                                                <?= form_dropdown('provincia',$provincias, '-1','class="form-control"') ?>
+						<?php echo form_error('provincia'); ?>
+					</div>
+
+					<div class="form-group">
+						<label for="pass"><strong>Contraseña</strong></label>
+						<input type="password" name="pass" class="form-control">
+						<?php echo form_error('pass'); ?>
+					</div>
+					<div class="form-group">
+						<label for="conf_pass"><strong>Confirmar contraseña</strong></label>
+						<input type="password" name="conf_pass" class="form-control">
+						<?php echo form_error('conf_pass'); ?>
+					</div>
+					
+					<div class="text-md-center">
+						<button type="submit" class="btn btn-primary">Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+    
+    
+    <!-- footer -->
+  <footer id="aa-footer">
+    <!-- footer bottom -->
+    <div class="aa-footer-top">
+     <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="aa-footer-top-area">
+            <div class="row">
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <h3>Menu principal</h3>
+                  <ul class="aa-footer-nav">
+                    <li><a href="<?=base_url()?>">Home</a></li>
+                    <li><a href="<?=base_url().'Productos/Categoria/1-2-3-4-5-6-7-8-9'?>">Categoria: Perros</a></li>
+                    <li><a href="<?=base_url().'Productos/Categoria/10-11-12-13-14-15-16-17-18'?>">Categoria: Gatos</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>Envios totalmente gratuitos</h3>
+                    <ul class="aa-footer-nav">
+                      <li><a href="#">Site Map</a></li>
+                      <li><a href="#">Search</a></li>
+                      <li><a href="#">Advanced Search</a></li>
+                      <li><a href="#">Suppliers</a></li>
+                      <li><a href="#">FAQ</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="aa-footer-widget">
+                  <div class="aa-footer-widget">
+                    <h3>Contacto</h3>
+                    <address>
+                      <p> 25 Astor Pl, NY 10003, USA</p>
+                      <p><span class="fa fa-phone"></span>+1 212-982-4589</p>
+                      <p><span class="fa fa-envelope"></span>dailyshop@gmail.com</p>
+                    </address>
+                    <div class="aa-footer-social">
+                      <a href="#"><span class="fa fa-facebook"></span></a>
+                      <a href="#"><span class="fa fa-twitter"></span></a>
+                      <a href="#"><span class="fa fa-google-plus"></span></a>
+                      <a href="#"><span class="fa fa-youtube"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>
+    </div>
+    <!-- footer-bottom -->
+    <div class="aa-footer-bottom">
+      <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+          <div class="aa-footer-bottom-area">
+            <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
+            <div class="aa-footer-payment">
+              <span class="fa fa-cc-mastercard"></span>
+              <span class="fa fa-cc-visa"></span>
+              <span class="fa fa-paypal"></span>
+              <span class="fa fa-cc-discover"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </footer>
+  <!-- / footer -->
+  <!-- Login Modal -->
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4>Loguee o Registrese</h4>
+          <form type='text' class="aa-login-form" action="<?=site_url('/Login/Log')?>" method="POST">
+            <label for="">Usuario<span>*</span></label>
+            <input type="text" placeholder="Usuario" name="usuario">
+            <label for="">Contraseña<span>*</span></label>
+            <input type="password" placeholder="Contraseña" name="password">
+            <button class="aa-browse-btn" type="submit">Login</button>
+            <p class="aa-lost-password"><a href="<?= site_url('/Login/Recuperar')?>">Olvidaste tu contraseña?</a></p>
+            <div class="aa-register-now">
+              No tienes cuenta?<a href="<?=site_url('/Login/Registro')?>">Registrate ahora!!</a>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div>
+  <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="<?=base_url('Assets/js/bootstrap.js')?>"></script>  

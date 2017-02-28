@@ -76,8 +76,11 @@ class Modelo_usuario extends CI_Model {
                    $usuario =  array(
                     'nombre' => $dato['nombre'],
                     'direccion' => $dato['direccion'],
-                    'dni' => $dato['dni']
-                );
+                    'dni' => $dato['dni'],
+                    'correo' =>$dato['correo'],
+                    'apellidos' =>$dato['apellidos'],
+                    'direccion' =>$dato['direccion'],
+                    'cp'        =>$dato['cp']);
             }
             return $usuario;
         

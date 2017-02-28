@@ -151,6 +151,91 @@ class Login extends CI_Controller {
                         'matches' => 'Deben coincidir las contraseñas'));
         }
         
+        public function Micuenta()
+        {
+            $this->load->model("Modelo_usuario");
+            $this->load->view('vista_micuenta',$this->Modelo_usuario->getUser($_SESSION['id']));
+
+        }
+        public function Modificardatos()
+        {
+            $this->load->model("Modelo_usuario");
+            $this->NormasRegistroMod();
+            if(!$this->form_validation->run())
+            {
+                //$this->load->view('vista_cabecera');
+                $this->load->view('Vista_modificar',array(
+                    'provincias' => $this->Modelo_login->ListaProvincias(),
+                    'usuario' => $this->Modelo_usuario->getUser($_SESSION['id'])));
+                //$this->load->view('Vista_pie');
+            }
+            else
+            {
+              $datos =array(
+                  'password'        =>  sha1($this->input->post('pass')),
+                  'correo'          =>  $this->input->post('mail'),
+                  'nombre'          =>  $this->input->post('nombre'),
+                  'apellidos'       =>  $this->input->post('apellidos'),
+                  'dni'             =>  $this->input->post('dni'),
+                  'direccion'       =>  $this->input->post('direccion'),
+                  'cp'              =>  $this->input->post('cp'),
+                  'provincia'       =>  $this->input->post('provincia'),
+                  'tipo'            => 'U',
+                  'alive'           => 'S');
+              
+              $this->Modelo_login->ModificarUsuario($_SESSION['id'],$datos);
+              redirect(site_url('/Login/Micuenta'));
+            }
+        }
+        public function NormasRegistroMod()
+        {
+             //Mail
+             $this->form_validation->set_rules('mail','mail','required|valid_email',
+                    array('required'=>'Debe introducir un mail',
+                        'valid_email'=>'El mail debe tener un formato valido',
+                        'is_unique'=>'Este mail ya esta registrado'));
+             //Nombre
+             $this->form_validation->set_rules('nombre','nombre','required',
+                    array('required'=>'Debe introducir un nombre'));
+             //Apellido
+             $this->form_validation->set_rules('apellidos','apellido','required',
+                    array('required'=>'Debe introducir un apellido'));
+             //DNI
+             $this->form_validation->set_rules('dni','dni','required|valid_dni',
+                    array('required'=>'Debe introducir un dni',
+                        'valid_dni'=>'Debe introducir un dni valido'));
+             //direccion
+             $this->form_validation->set_rules('direccion','direccion','required',
+                    array('required'=>'Debe introducir una dirección'));
+             //CP
+             $this->form_validation->set_rules('cp','cp','required',
+                    array('required'=>'Debe introducir un código postal'));
+             //Contraseña
+             $this->form_validation->set_rules('pass','pass','required',
+                    array('required'=>'Debe introducir una contraseña'));
+             //ReContraseña
+             $this->form_validation->set_rules('conf_pass','pass','required|matches[pass]',
+                    array('required'=>'Debe introducir el campo',
+                        'matches' => 'Deben coincidir las contraseñas'));
+        }
         
+        public function Baja()
+        {
+            $this->load->view('Vista_baja');
+        }
+        public function Bajadef()
+        {
+            $this->load->model('Modelo_usuario');
+            $this->Modelo_usuario->ModificarUsuario($_SESSION['id'],array('alive' => 'N'));
+            redirect(site_url());
+        }
+        
+        public function Mispedidos()
+        {
+            $this->load->model('Modelo_pedido');
+            $this->load->view('Vista_pedidos',array(
+               'pedido' => $this->Modelo_pedido->getPedido($_SESSION['id'])));
+            
+        }
         
 }
