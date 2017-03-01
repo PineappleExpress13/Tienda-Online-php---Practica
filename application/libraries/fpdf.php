@@ -364,7 +364,7 @@ function Header()
             // Movernos a la derecha
             $this->Cell(80);
             // Título
-            $this->Cell(30,10,'Wokiki pedido',1,0,'C');
+            $this->Cell(30,10,'Wokiki pedido',0,0,'C');
             // Salto de línea
             $this->Ln(20);
 }
@@ -989,7 +989,7 @@ function SetXY($x, $y)
 	$this->SetY($y,false);
 }
 
-function Output($dest='', $name='', $isUTF8=false)
+function Output($dest='', $name='', $isUTF8=true)
 {
 	// Output PDF to some destination
 	$this->Close();

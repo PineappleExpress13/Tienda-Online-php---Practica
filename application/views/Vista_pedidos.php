@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -238,36 +238,36 @@
   </section>
   <div class="col-md-2">
     <ul class="nav nav-pills nav-stacked">
-     <li role="presentation" class="active"><a href="<?=site_url('/Login/Micuenta')?>">Información de la cuenta</a></li>
-    <li role="presentation"><a href="<?=site_url('/Login/Mispedidos')?>">Mis pedidos</a></li>
+     <li role="presentation" ><a href="<?=site_url('/Login/Micuenta')?>">Información de la cuenta</a></li>
+    <li role="presentation" class="active"><a href="<?=site_url('/Login/Mispedidos')?>">Mis pedidos</a></li>
     </ul>
      </div>
-  <div class="col-md-10">
-      <h3>Datos de usuario</h3> 
+  <div class="col-md-8">
       <table class="table">
           <tr>
-              <td>Nombre: <?=$nombre?></td>
-              <td>Direccion: <?=$direccion?></td>
-          </tr>   
-          <tr>
-              <td>Apellidos: <?=$apellidos?></td>
-              <td>Codigo postal: <?=$cp?></td>
+              <td>Identificador</td>
+              <td>Estado</td>
+              <td>Fecha</td>
+              <td>DNI</td>
+              <td>Acciones</td>
           </tr>
+          <?php foreach($pedido as $row):?>
           <tr>
-              <td>Correo: <?=$correo?> </td>
-              <td>DNI: <?=$dni?></td>
+              <td><?=$row['codigo']?><a href="<?= site_url('/Login/Detallespedido/'.$row['id'])?>">  <i class="fa fa-search" aria-hidden="true"></a></i></td>
+              <td><?=$row['estado']?></td>
+              <td><?=$row['fecha']?></td>
+              <td><?=$row['dni']?></td>
+              <td><a href='<?= site_url('/Carrito/PDF/'.$row['id'])?>'><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                  <a href='<?= site_url('/Carrito/AnularPedido/'.$row['id'])?>'><i class="fa fa-ban" aria-hidden="true"></i></a></td>
           </tr>
+          <?php endforeach;?>
+          
       </table>
-      <div align="center">
-      <a class="btn btn-default" href="<?=site_url('/Login/Modificardatos')?>">Modificar datos</a> 
-      <a class="btn btn-default" href="<?=site_url('/Login/Baja')?>">Dar de baja</a>
-      </div>
+      
   </div>
-    	
-
-    
-    
-    
+  
+  
+  
 <!-- footer -->
   <footer id="aa-footer">
     <!-- footer bottom -->

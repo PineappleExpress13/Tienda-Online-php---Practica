@@ -72,8 +72,75 @@ class Modelo_pedido extends CI_Model {
         }
         
     }
-    
-    public function GenerarPDF()
+    public function getPedido($id)
+    {
+        $this->db->where('id',$id);
+        $consulta=$this->db->get('tbl_pedido');
+        foreach($consulta->result_array() as $dato)
+        {
+            $pedido=array(
+              'id' => $dato['id'],
+              'fecha' => $dato['fecha'],
+              'direccion' => $dato['direccion'],
+              'nombre' => $dato['nombre'],
+              'estado' => $dato['estado'],
+              'dni'    => $dato['dni'],
+              'codigo' => $dato['codigo']);
+        }
+        return $pedido;
+    }
+    public function getPedidos($id)
+    {
+        $this->db->where('id_usuario',$id);
+        $consulta=$this->db->get('tbl_pedido');
+        $datos;
+        $i=0;
+        foreach($consulta->result_array() as $dato)
+        {
+            $pedido=array(
+              'id' => $dato['id'],
+              'fecha' => $dato['fecha'],
+              'direccion' => $dato['direccion'],
+              'nombre' => $dato['nombre'],
+              'estado' => $dato['estado'],
+              'dni'    => $dato['dni'],
+              'codigo' => $dato['codigo']);
+            $datos[$i]=$pedido;
+            $i++;
+        }
+        $i=0;
+        return $datos;
+    }
+    public function getLineas($idpedido)
+    {
+        $this->load->model('Modelo_producto');
+        $this->db->where('id_pedido',$idpedido);
+        $consulta=$this->db->get('tbl_linea');
+        $datos;
+        $i=0;
+        foreach($consulta->result_array() as $dato)
+        {
+            $linea=array(
+              'subtotal' => $dato['subtotal'],
+              'total' => $dato['total'],
+              'cantidad' => $dato['cantidad'],
+              'id_producto' =>$dato['id_producto'],
+              'nombre' => $this->Modelo_producto->NombreProducto($dato['id_producto']),
+              'imagen'    => $this->Modelo_producto->ImagenProducto($dato['id_producto']));
+            $datos[$i]=$linea;
+            $i++;
+        }
+        $i=0;
+        return $datos;
+    }
+    public function BorrarPedido($id)
+    {
+        $this->db->where('id_pedido',$id);
+        $this->db->delete('tbl_linea');
+        $this->db->where('id',$id);
+        $this->db->delete('tbl_pedido');
+    }
+    public function GenerarPDF($id)
     {
         $total=0;
         $this->load->library('fpdf');
@@ -83,7 +150,7 @@ class Modelo_pedido extends CI_Model {
         $pdf->SetFont('Arial','B',11);
         
         //Traemos la tabla pedido
-        $this->db->where('id',$_SESSION['id_pedido']);
+        $this->db->where('id',$id);
         $consulta=$this->db->get('tbl_pedido');
         //La imprimimos en el pdf
             foreach($consulta->result_array() as $dato)
@@ -92,7 +159,9 @@ class Modelo_pedido extends CI_Model {
                 $pdf->Cell(0,10,'Nombre: '.$dato['nombre'].'                DNI: '.$dato['dni'],0,1);
             }
         //Traemos la tabla linea
+        $this->db->where('id_pedido',$id);
         $consulta=$this->db->get('tbl_linea');
+        $total=0;
         //La imprimimos en el pdf
             foreach($consulta->result_array() as $dato)
             {
@@ -100,9 +169,11 @@ class Modelo_pedido extends CI_Model {
                 $query=$this->db->get('tbl_producto');
                 foreach($query->result_array() as $producto)
                 {
-                    $pdf->Cell(0,10,'Producto : '.$producto['nombre'].'     Codigo: '.$producto['codigo'].'     Cantidad: '.$dato['cantidad'].'     Total: '.$dato['total'],0,2);
+                    $pdf->Cell(0,10,'Producto : '.$producto['nombre'].'     Codigo: '.$producto['codigo'].'     Cantidad: '.$dato['cantidad'].'     Total: '.$dato['total'].'€',0,2);
+                    $total+=$dato['total'];
                 }
             }
+             $pdf->Cell(0,10,'Total : '.$total.'€',0,2);
           $pdf->Output('D');
     }
         

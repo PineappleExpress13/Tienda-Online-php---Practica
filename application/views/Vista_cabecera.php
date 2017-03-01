@@ -141,7 +141,7 @@
                       </span>
                     </li>
                   </ul>
-                  <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Pagar</a>
+                  <a class="aa-cartbox-checkout aa-primary-btn" href="<?= site_url('/Carrito/Pedido')?>">Pagar</a>
                   <a  class="aa-cartbox-checkout aa-primary-btn" href="<?=site_url('/Carrito/Vaciar')?>" class="aa-cart-view-btn">Vaciar</a>
                 </div>
               </div>

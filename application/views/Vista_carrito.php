@@ -69,7 +69,7 @@
                    </tr>
                  </tbody>
                </table>
-               <a href="#" class="aa-cart-view-btn">Pagar</a>
+               <a href="<?= site_url('/Carrito/Pedido')?>" class="aa-cart-view-btn">Pagar</a>
                <a href="<?=site_url('/Carrito/Vaciar')?>" class="aa-cart-view-btn">Vaciar</a>
              </div>
            </div>

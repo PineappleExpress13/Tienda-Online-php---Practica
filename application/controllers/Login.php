@@ -234,8 +234,15 @@ class Login extends CI_Controller {
         {
             $this->load->model('Modelo_pedido');
             $this->load->view('Vista_pedidos',array(
-               'pedido' => $this->Modelo_pedido->getPedido($_SESSION['id'])));
+               'pedido' => $this->Modelo_pedido->getPedidos($_SESSION['id'])));
             
+        }
+        public function Detallespedido($id)
+        {
+            $this->load->model('Modelo_pedido');
+            $this->load->view('Vista_pedidos_detalle',array(
+               'pedido' => $this->Modelo_pedido->getPedido($id),
+               'lineas' => $this->Modelo_pedido->getLineas($id)));
         }
         
 }

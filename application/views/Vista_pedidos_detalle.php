@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -236,70 +236,52 @@
       </div>       
     </div>
   </section>
-    	<div class="container">
-		<div class="col-md-6 offset-md-3">
-			<div class="card card-block">
-				<h3 class="card-title  text-md-center">Modificar usuario</h3>
-				<hr class="hr_black">
-				<form method="post" action="<?=site_url('/Login/Modificardatos')?>">
-                                        <div class="form-group">
-						<label for="email"><strong>Email</strong></label>
-						<input type="text" name="mail" class="form-control" value="<?php echo $usuario['correo'] ?>">
-						<?php echo form_error('mail'); ?>
-					</div>
-                                        <div class="form-group">
-						<label for="usuario"><strong>Nombre</strong></label>
-						<input type="text" name="nombre" class="form-control" value="<?php echo $usuario['nombre'] ?>">
-						<?php echo form_error('nombre'); ?>
-					</div>
-                                        <div class="form-group">
-						<label for="usuario"><strong>Apellidos</strong></label>
-						<input type="text" name="apellidos" class="form-control" value="<?php echo $usuario['apellidos']; ?>">
-						<?php echo form_error('apellidos'); ?>
-					</div>
-                                        <div class="form-group">
-						<label for="usuario"><strong>dni</strong></label>
-						<input type="text" name="dni" class="form-control" value="<?php echo $usuario['dni']; ?>">
-						<?php echo form_error('dni'); ?>
-					</div>
-                                        <div class="form-group">
-						<label for="usuario"><strong>direccion</strong></label>
-						<input type="text" name="direccion" class="form-control" value="<?php echo $usuario['direccion']; ?>">
-						<?php echo form_error('direccion'); ?>
-					</div>
-                                        <div class="form-group">
-						<label for="usuario"><strong>Codigo postal</strong></label>
-						<input type="text" name="cp" class="form-control" value="<?php echo $usuario['cp']; ?>">
-						<?php echo form_error('cp'); ?>
-					</div>
-                                        <div class="form-group">
-						<label for="usuario"><strong>Provincia</strong></label>
-                                                <?= form_dropdown('provincia',$provincias, '-1','class="form-control"') ?>
-						<?php echo form_error('provincia'); ?>
-					</div>
-
-					<div class="form-group">
-						<label for="pass"><strong>Contraseña</strong></label>
-						<input type="password" name="pass" class="form-control">
-						<?php echo form_error('pass'); ?>
-					</div>
-					<div class="form-group">
-						<label for="conf_pass"><strong>Confirmar contraseña</strong></label>
-						<input type="password" name="conf_pass" class="form-control">
-						<?php echo form_error('conf_pass'); ?>
-					</div>
-					
-					<div class="text-md-center">
-						<button type="submit" class="btn btn-primary">Enviar</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-    
-    
-    <!-- footer -->
+  <div class="col-md-2">
+    <ul class="nav nav-pills nav-stacked">
+     <li role="presentation" ><a href="<?=site_url('/Login/Micuenta')?>">Información de la cuenta</a></li>
+    <li role="presentation" class="active"><a href="<?=site_url('/Login/Mispedidos')?>">Mis pedidos</a></li>
+    </ul>
+     </div>
+  <div class="col-md-8">
+      <h3>Detalles del pedido : <?=$pedido['codigo']?></h3>
+      <p>Fecha de creación: <?=$pedido['fecha']?></p>
+      <p>Dirección de facturación: <?=$pedido['direccion']?></p>
+      <p>Nombre: <?=$pedido['nombre']?></p>
+      <p>DNI: <?=$pedido['dni']?></p>
+      <p>Estado: <?=$pedido['estado']?></p>
+      <table class="table">
+          <tr>
+              <td>Imagen</td>
+              <td>Nombre</td>
+              <td>Cantidad</td>
+              <td>Subtotal</td>
+              <td>Total</td>
+          </tr>
+          <?php foreach($lineas as $row):?>
+          <tr>
+              <td><img src='<?= base_url($row['imagen'])?>' width="60" height="60"></td>
+              <td><a href='<?= site_url('Productos/Producto/'.$row['id_producto'])?>'><?=$row['nombre']?></a></td>
+              <td><?=$row['cantidad']?></td>
+              <td><?=$row['subtotal']?> €</td>
+              <td><?=$row['total']?> €</td>
+          </tr>
+          <?php endforeach;?>          
+      </table>
+      <?php if($pedido['estado']=='P') :?>
+      <div align='center'>
+          <a class="btn btn-default" href="<?=site_url('/Login/')?>">Confirmar Pedido</a>
+      </div>
+      <?php endif;?>
+      <?php if($pedido['estado']=='C') :?>
+      <div align='center'>
+          <a class="btn btn-default" href="<?=site_url('/Login/')?>">Cancelar Pedido</a>
+      </div>
+      <?php endif;?>
+  </div>
+  
+  
+  
+<!-- footer -->
   <footer id="aa-footer">
     <!-- footer bottom -->
     <div class="aa-footer-top">

@@ -32,6 +32,11 @@ public function __construct()
         public function Vaciar()
         {
             $this->carro->destroy();
+            if(isset($_SESSION['pedido']))
+            {
+                $this->AnularPedido($_SESSION['id_pedido']);
+                $this->session->unset_userdata('pedido');
+            }
             redirect(site_url('/Carrito/Index'));
             
         }
@@ -69,6 +74,7 @@ public function __construct()
                     
                 }
                 $this->Modelo_pedido->AddLineas();
+                redirect(site_url('/Login/Mispedidos'));
             }
             else
             {
@@ -81,11 +87,25 @@ public function __construct()
             $this->session->unset_userdata('pedido');
         }
         
-        public function PDF()
+        public function PDF($id)
         {
            $this->load->model('Modelo_pedido');
-           $this->Modelo_pedido->GenerarPDF();
+           $this->Modelo_pedido->GenerarPDF($id);
         }
+        
+        public function AnularPedido($id)
+        {
+            $this->load->model('Modelo_pedido');
+            $this->Modelo_pedido->BorrarPedido($id);
+            if(isset($_SESSION['pedido']) && $_SESSION['id_pedido'] == $id)
+            {
+                $this->session->unset_userdata('pedido');
+                $this->carro->destroy();
+            }
+            redirect(site_url('/Login/Mispedidos'));
+        }
+        
+
 
 }
 
