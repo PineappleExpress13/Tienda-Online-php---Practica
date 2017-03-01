@@ -257,9 +257,11 @@
               <td><?=$row['estado']?></td>
               <td><?=$row['fecha']?></td>
               <td><?=$row['dni']?></td>
-              <td><a href='<?= site_url('/Carrito/PDF/'.$row['id'])?>'><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
-                  <a href='<?= site_url('/Carrito/AnularPedido/'.$row['id'])?>'><i class="fa fa-ban" aria-hidden="true"></i></a></td>
-          </tr>
+              <td><a href='<?= site_url('/Carrito/PDF/'.$row['id'])?>'><i class="fa fa-file-pdf-o" title="Imprimir albaran" aria-hidden="true"></i></a>
+                  <?php if($row['estado']=='P' || $row['estado']=='C') : ?>
+                  <a href='<?= site_url('/Carrito/AnularPedido/'.$row['id'])?>'><i class="fa fa-ban" title="Cancelar pedido" aria-hidden="true"></i></a></td>
+                  <?php endif;?>
+    </tr>
           <?php endforeach;?>
           
       </table>

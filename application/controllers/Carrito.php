@@ -71,7 +71,7 @@ public function __construct()
                 }
                 else
                 {
-                    
+
                 }
                 $this->Modelo_pedido->AddLineas();
                 redirect(site_url('/Login/Mispedidos'));
@@ -82,9 +82,12 @@ public function __construct()
             }
         }
         
-        public function ConfirmarPedido()
+        public function ConfirmarPedido($id)
         {
-            $this->session->unset_userdata('pedido');
+            $this->load->model('Modelo_pedido');
+            $this->Modelo_pedido->ConfirmarPedido($id);
+            redirect(site_url('/Login/Mispedidos'));
+
         }
         
         public function PDF($id)

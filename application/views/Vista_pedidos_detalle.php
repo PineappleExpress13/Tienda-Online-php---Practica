@@ -269,7 +269,7 @@
       </table>
       <?php if($pedido['estado']=='P') :?>
       <div align='center'>
-          <a class="btn btn-default" href="<?=site_url('/Login/')?>">Confirmar Pedido</a>
+          <a class="btn btn-default" href="<?=site_url('/Carrito/ConfirmarPedido/'.$pedido['id'])?>">Confirmar Pedido</a>
       </div>
       <?php endif;?>
       <?php if($pedido['estado']=='C') :?>

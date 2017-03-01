@@ -140,6 +140,57 @@ class Modelo_pedido extends CI_Model {
         $this->db->where('id',$id);
         $this->db->delete('tbl_pedido');
     }
+    
+    public function ConfirmarPedido($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('tbl_pedido',array('estado'=>'C'));
+        $this->load->library('email');
+             
+        $this->db->where('id',$_SESSION['id']);
+        $consulta=$this->db->get('tbl_usuario');
+        foreach($consulta->result_array() as $dato)
+        {
+               $mail = $dato['correo'];
+        }
+
+
+            $config['mailpath'] = '/usr/sbin/sendmail';
+            $config['charset'] = 'utf-8';
+            $config['wordwrap'] = TRUE;
+            $config['protocol'] = 'smtp';
+            $config['smtp_host'] = 'mail.iessansebastian.com';
+            $config['smtp_user'] = 'aula4@iessansebastian.com';
+            $config['smtp_pass']='dawanyo2017';
+            $config['mailtype'] = 'html';
+            $this->email->initialize($config);
+            $pedido=$this->getPedido($id);
+            $html='<p>Fecha de creación: '.$pedido['fecha'].'</p>';
+            $html.='<p>Dirección de facturación: '.$pedido['direccion'].'</p>';
+            $html.='<p>Nombre: '.$pedido['nombre'].'</p>';
+            $html.='<p>DNI: '.$pedido['dni'].'</p>';
+            $html.='<hr>';
+            $html.='<table>';
+            $html.='<tr><td>Nombre</td><td>Cantidad</td><td>Subtotal</td><td>Total</td>';
+            $lineas=$this->getLineas($id);
+            foreach($lineas as $linea)
+            {
+                $html.='<tr>';
+                $html.='<td>'.$linea['nombre'].'</td>';
+                $html.='<td>'.$linea['cantidad'].'</td>';
+                $html.='<td>'.$linea['subtotal'].'€</td>';
+                $html.='<td>'.$linea['total'].'€</td>';
+                $html.='</tr>';
+            }
+            $html.='</table>';
+
+            $this->email->clear();
+            $this->email->from('aula4@iessansebastian.com');
+            $this->email->to($mail);
+            $this->email->subject('Detalles del pedido '.$pedido['codigo']);
+            $this->email->message($html);
+            $this->email->send();
+    }
     public function GenerarPDF($id)
     {
         $total=0;
@@ -155,8 +206,8 @@ class Modelo_pedido extends CI_Model {
         //La imprimimos en el pdf
             foreach($consulta->result_array() as $dato)
             {
-                $pdf->Cell(0,10,'Codigo de pedido : '.$dato['codigo'].'     Fecha: '.$dato['fecha'],0,1);
-                $pdf->Cell(0,10,'Nombre: '.$dato['nombre'].'                DNI: '.$dato['dni'],0,1);
+                $pdf->Cell(0,10,utf8_decode('Codigo de pedido : '.$dato['codigo'].'     Fecha: '.$dato['fecha']),0,1);
+                $pdf->Cell(0,10,utf8_decode('Nombre: '.$dato['nombre'].'                DNI: '.$dato['dni']),0,1);
             }
         //Traemos la tabla linea
         $this->db->where('id_pedido',$id);
@@ -169,11 +220,11 @@ class Modelo_pedido extends CI_Model {
                 $query=$this->db->get('tbl_producto');
                 foreach($query->result_array() as $producto)
                 {
-                    $pdf->Cell(0,10,'Producto : '.$producto['nombre'].'     Codigo: '.$producto['codigo'].'     Cantidad: '.$dato['cantidad'].'     Total: '.$dato['total'].'€',0,2);
+                    $pdf->Cell(0,10,utf8_decode('Producto : '.$producto['nombre'].'     Codigo: '.$producto['codigo'].'     Cantidad: '.$dato['cantidad'].'     Total: '.$dato['total']).iconv('UTF-8','windows-1252','€'),0,2);
                     $total+=$dato['total'];
                 }
             }
-             $pdf->Cell(0,10,'Total : '.$total.'€',0,2);
+             $pdf->Cell(0,10,utf8_decode('Total : '.$total).iconv('UTF-8','windows-1252','€'),0,2);
           $pdf->Output('D');
     }
         
